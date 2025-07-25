@@ -58,7 +58,7 @@ export default function Reports() {
                 </p>
 
                 {overdueBooks.length > 0 ? (
-                  <div className="space-y-4">
+                  <div className="space-y-2 h-52 overflow-y-scroll">
                     {overdueBooks.map((book) => (
                       <div
                         key={book.id}
