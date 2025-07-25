@@ -33,7 +33,7 @@ export default function BorrowReturn() {
           title="Borrow & Return"
           description="Manage book borrowing and return operations"
         />
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-col md:flex-row gap-2">
           <button
             onClick={() => setShowModal(true)}
             className="bg-black h-fit text-white p-2 pl-4 pr-4 mt-6 rounded-md hover:bg-gray-700"
@@ -44,7 +44,7 @@ export default function BorrowReturn() {
           </button>
           <button
             onClick={() => setShowReturnModal(true)}
-            className="bg-white ml-2 h-fit p-2 pl-4 pr-4 mt-6 rounded-md hover:bg-gray-200 border border-gray-200"
+            className="bg-white md:ml-2 h-fit p-2 pl-4 pr-4 md:mt-6 rounded-md hover:bg-gray-200 border border-gray-200"
           >
             <div className="flex flex-row gap-1 min-w-30">
               <ArrowRightLeftIcon size={20} /> <span>Return Book</span>

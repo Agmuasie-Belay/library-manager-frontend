@@ -18,7 +18,7 @@ export default function Login() {
     try {
       const { access_token, user } = await loginUser({ email, password });
       login(user, access_token);
-console.log(user)
+
       localStorage.setItem("userInfo", JSON.stringify(user));
       localStorage.setItem("accessToken", access_token);
       toast.success("Login successful");
@@ -31,8 +31,8 @@ console.log(user)
   };
 
   return (
-    <div className="fixed top-0 left-0 grid  bg-white place-items-center m-0 w-full h-screen ">
-      <div className=" grid grid-cols-1 align-middle my-auto p-6 w-[400px] mx-auto  rounded-md bg-white shadow-gray-300 shadow-sm">
+    <div className="fixed top-0 left-0 grid  bg-gray-50 place-items-center m-0 w-full h-screen p-0 ">
+      <div className=" grid grid-cols-1 align-middle my-auto p-6 w-full sm:w-[400px] sm:mx-auto sm:rounded-md bg-white shadow-gray-300 shadow-sm">
         <form onSubmit={handleLogin} action="">
           <div className="flex justify-center">
             <BookOpen className="text-blue-600 w-12 h-12" />
@@ -71,14 +71,27 @@ console.log(user)
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full flex items-center justify-center gap-2 border-1 rounded-md p-2 font-semibold bg-black text-white hover:bg-gray-800 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 border-1 rounded-md p-2 font-semibold bg-black text-white hover:bg-gray-800 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed mb-4"
           >
             {isLoading && (
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
             )}
             <span>{isLoading ? "Signing in..." : "Sign in"}</span>
           </button>
-          
+          <hr className="text-gray-600"/>
+          <div className="text-gray-500">
+            <p>Test credentials</p>
+          <div className="grid grid-cols-2 text-xs text-left">
+              <div>
+                librarian: <br/>librarian@library.com <br/>
+                password: librarian123
+              </div>
+              <div>
+                admin: <br/>admin@library.com <br/>
+                password: admin123
+              </div>
+          </div>
+          </div>
         </form>
       </div>
     </div>
