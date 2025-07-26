@@ -1,12 +1,7 @@
 import axios from "./axiosInstance";
 export const getBooks = async () => {
-  try {
-    const res = await axios.get("/books");
-    return res.data;
-  } catch (err) {
-    console.error("getBooks error:", err.response?.data || err.message);
-    throw err;
-  }
+  const res = await axios.get("/books");
+  return res.data;
 };
 
 export const getGenres = async () => {
@@ -28,8 +23,6 @@ export const createBook = async (bookData) => {
   const res = await axios.post("/books", payload);
   return res.data;
 };
-
-
 
 export const updateBook = async (bookId, updatedData) => {
   const res = await axios.patch(`/books/${bookId}`, updatedData);

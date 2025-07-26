@@ -64,11 +64,12 @@ export default function Staff() {
   const staffFiltered = staff.filter((s) => {
     const term = searchTerm.toLowerCase().trim();
     return (
-      s.name?.toLowerCase().includes(term) ||
+      s.username?.toLowerCase().includes(term) ||
       s.email?.toLowerCase().includes(term) ||
-      s.phone?.toLowerCase().includes(term)
+      s.role?.toLowerCase().includes(term)
     );
   });
+console.log(staffFiltered)
 
   return (
     <div>

@@ -74,6 +74,7 @@ export default function BookList() {
       book.genre.name?.toLowerCase().includes(term)
     );
   });
+ 
   return (
     <div>
       <div className="flex flex-row justify-between ">
@@ -102,64 +103,73 @@ export default function BookList() {
           </div>
         ) : (
           <div className="mt-6 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {filteredBooks.length > 0 ? (filteredBooks.map((book, i) => (
-              <InfoCard key={i}>
-                <InfoCardHeader
-                  key={book.id}
-                  title={book.title}
-                  subtitle={book.author}
-                  subtitlePrefix="By: "
-                  status={[
-                    {
-                      text:
-                        book.available_copies > 0
-                          ? "Available"
-                          : "Out of Stock",
-                      className:
-                        book.available_copies > 0
-                          ? "bg-blue-500 text-white"
-                          : "bg-red-500 text-white",
-                    },
-                  ]}
-                />
-                <InfoCardBody
-                  metaRows={[
-                    { label: "Genre", value: book.genre.name },
-                    { label: "Published", value: book.published_year },
-                    { label: "Available Copies", value: book.available_copies },
-                  ]}
-                />
-                <InfoCardAction
-                  actions={[
-                    <ActionButton
-                      action="view"
-                      onClick={() => setSelectedBook(book)}
-                      icon={<Eye size={18} />}
-                    />,
-                    <ActionButton
-                      action="edit"
-                      icon={<Edit size={18} />}
-                      onClick={() => {
-                        setEditingBook(book);
-                        setShowEditModal(true);
-                      }}
-                    />,
-                    <ActionButton
-                      action="delete"
-                      icon={<Trash2Icon size={18} />}
-                      onClick={() => {
-                        setBookToDelete(book); // set the book to delete
-                        setShowConfirmModal(true);
-                      }}
-                    />,
-                  ]}
-                />
-              </InfoCard>
-            ))):(<>
-            {searchTerm && (<div className="grid col-span-full justify-center align-middle text-gray-500 py-8 mx-auto p-3 rounded my-4">
-          No books match your search. 
-        </div>) }
-            </>)}
+            {filteredBooks.length > 0 ? (
+              filteredBooks.map((book, i) => (
+                <InfoCard key={i}>
+                  <InfoCardHeader
+                    key={book.id}
+                    title={book.title}
+                    subtitle={book.author}
+                    subtitlePrefix="By: "
+                    status={[
+                      {
+                        text:
+                          book.available_copies > 0
+                            ? "Available"
+                            : "Out of Stock",
+                        className:
+                          book.available_copies > 0
+                            ? "bg-blue-500 text-white"
+                            : "bg-red-500 text-white",
+                      },
+                    ]}
+                  />
+                  <InfoCardBody
+                    metaRows={[
+                      { label: "Genre", value: book.genre.name },
+                      { label: "Published", value: book.published_year },
+                      {
+                        label: "Available Copies",
+                        value: book.available_copies,
+                      },
+                    ]}
+                  />
+                  <InfoCardAction
+                    actions={[
+                      <ActionButton
+                        action="view"
+                        onClick={() => setSelectedBook(book)}
+                        icon={<Eye size={18} />}
+                      />,
+                      <ActionButton
+                        action="edit"
+                        icon={<Edit size={18} />}
+                        onClick={() => {
+                          setEditingBook(book);
+                          setShowEditModal(true);
+                        }}
+                      />,
+                      <ActionButton
+                        action="delete"
+                        icon={<Trash2Icon size={18} />}
+                        onClick={() => {
+                          setBookToDelete(book); // set the book to delete
+                          setShowConfirmModal(true);
+                        }}
+                      />,
+                    ]}
+                  />
+                </InfoCard>
+              ))
+            ) : (
+              <>
+                {searchTerm && (
+                  <div className="grid col-span-full justify-center align-middle text-gray-500 py-8 mx-auto p-3 rounded my-4">
+                    No books match your search.
+                  </div>
+                )}
+              </>
+            )}
           </div>
         )
       ) : (

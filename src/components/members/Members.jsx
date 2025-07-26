@@ -122,72 +122,76 @@ export default function MemberList() {
           </div>
         ) : (
           <div className="mt-6 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {membersFiltered.length > 0 ? (membersFiltered.map((member, i) => (
-              <InfoCard key={i}>
-                <InfoCardHeader
-                  title={member.name}
-                  subtitle={member.email}
-                  subtitlePrefix="Email: "
-                  status={[
-                    {
-                      text: `${member.activeBorrowCount} active` || 0,
-                      className: `${
-                        member.activeBorrowCount !== 0 ? style1 : style2
-                      }`,
-                    },
-                  ]}
-                />
-                <InfoCardBody
-                  metaRows={[
-                    { label: "Phone", value: member.phone },
-                    { label: "Joined", value: member.join_date },
-                    {
-                      label: "Active borrows",
-                      value: member.activeBorrowCount,
-                    },
-                  ]}
-                />
-                <InfoCardAction
-                  actions={[
-                    <ActionButton
-                      action="view"
-                      onClick={() => setSelectedMember(member)}
-                      icon={<Eye size={18} />}
-                    />,
-                    <ActionButton
-                      action="close"
-                      icon={<TimerReset size={18} />}
-                      // onClick={() => {
-                      //   setMemberToDelete(member);
-                      //   setShowConfirmModal(true);
-                      // }}
-                    />,
-                    <ActionButton
-                      action="edit"
-                      icon={<Edit size={18} />}
-                      onClick={() => {
-                        setEditingMember(member);
-                        setShowEditModal(true);
-                      }}
-                    />,
-                    <ActionButton
-                      action="delete"
-                      icon={<Trash2Icon size={18} />}
-                      onClick={() => {
-                        setMemberToDelete(member);
-                        setShowConfirmModal(true);
-                      }}
-                    />,
-                  ]}
-                />
-              </InfoCard>
-            ))):(<>
-            {searchTerm && (
+            {membersFiltered.length > 0 ? (
+              membersFiltered.map((member, i) => (
+                <InfoCard key={i}>
+                  <InfoCardHeader
+                    title={member.name}
+                    subtitle={member.email}
+                    subtitlePrefix="Email: "
+                    status={[
+                      {
+                        text: `${member.activeBorrowCount} active` || 0,
+                        className: `${
+                          member.activeBorrowCount !== 0 ? style1 : style2
+                        }`,
+                      },
+                    ]}
+                  />
+                  <InfoCardBody
+                    metaRows={[
+                      { label: "Phone", value: member.phone },
+                      { label: "Joined", value: member.join_date },
+                      {
+                        label: "Active borrows",
+                        value: member.activeBorrowCount,
+                      },
+                    ]}
+                  />
+                  <InfoCardAction
+                    actions={[
+                      <ActionButton
+                        action="view"
+                        onClick={() => setSelectedMember(member)}
+                        icon={<Eye size={18} />}
+                      />,
+                      <ActionButton
+                        action="close"
+                        icon={<TimerReset size={18} />}
+                        // onClick={() => {
+                        //   setMemberToDelete(member);
+                        //   setShowConfirmModal(true);
+                        // }}
+                      />,
+                      <ActionButton
+                        action="edit"
+                        icon={<Edit size={18} />}
+                        onClick={() => {
+                          setEditingMember(member);
+                          setShowEditModal(true);
+                        }}
+                      />,
+                      <ActionButton
+                        action="delete"
+                        icon={<Trash2Icon size={18} />}
+                        onClick={() => {
+                          setMemberToDelete(member);
+                          setShowConfirmModal(true);
+                        }}
+                      />,
+                    ]}
+                  />
+                </InfoCard>
+              ))
+            ) : (
+              <>
+                {searchTerm && (
                   <div className="grid col-span-full justify-center align-middle text-gray-500 py-8 mx-auto p-3 rounded my-4">
                     No members match your search.
                   </div>
                 )}
-            </>)}
+              </>
+            )}
           </div>
         )
       ) : (

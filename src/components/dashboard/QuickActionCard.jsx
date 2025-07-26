@@ -1,7 +1,7 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function QuickActionCard({ link, Icon, title, style }) {
-    const role = localStorage.getItem("role");
+  const role = localStorage.getItem("role");
   return (
     <Link to={link}>
       <div className={`p-4 border rounded-md cursor-pointer ${style}`}>

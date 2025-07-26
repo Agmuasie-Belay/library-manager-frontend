@@ -19,11 +19,9 @@ export default function Reports() {
     error,
     getReportData,
   } = useReportStore();
-  console.log(summary);
   useEffect(() => {
     getReportData();
   }, []);
-  console.log(overdueBooks);
   const getDaysOverdue = (dueDate) => {
     const today = new Date();
     const due = new Date(dueDate);

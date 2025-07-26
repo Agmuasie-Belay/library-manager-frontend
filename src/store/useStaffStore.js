@@ -16,10 +16,12 @@ export const useStaffStore = create((set) => ({
     try {
       const data = await getStaff();
       set({ staff: data, isLoading:false });
+
     } catch (err) {
       set({isLoading:false, error:err.message})
       console.error("Failed to fetch staffs:", err);
     }
+    
   },
 
   addStaff: async (staffData) => {
