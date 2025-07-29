@@ -20,6 +20,7 @@ export default function Reports() {
     getReportData,
   } = useReportStore();
   useEffect(() => {
+    document.title = "Reports | Library Manager"
     getReportData();
   }, []);
   const getDaysOverdue = (dueDate) => {

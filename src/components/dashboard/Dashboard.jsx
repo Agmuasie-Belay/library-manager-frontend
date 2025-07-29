@@ -31,13 +31,11 @@ export default function Dashboard() {
   const user = useAuthStore((state) => state.user);
 
   const role = user?.role;
+  useEffect(() => {}, []);
 
   useEffect(() => {
-    const loadData = async () => {
-      if (!role) return;
-      const data = await fetchDashboardData(role);
-    };
-    loadData();
+    document.title = "Dashboard | Library Manager";
+    fetchDashboardData(role);
   }, []);
 
   const statsData = [

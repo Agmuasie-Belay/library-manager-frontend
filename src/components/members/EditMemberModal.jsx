@@ -8,7 +8,9 @@ export default function EditMemberModal({ show, onClose, editingMember }) {
 
   const [member, setMember] = useState(editingMember || null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+ const style =
+    "w-full border border-gray-300 p-2 rounded  focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black";
+  
   useEffect(() => {
     if (editingMember && show) {
       setMember(editingMember);
@@ -58,7 +60,7 @@ export default function EditMemberModal({ show, onClose, editingMember }) {
             type="text"
             value={member.name}
             onChange={(e) => setMember({ ...member, name: e.target.value })}
-            className="w-full border border-gray-300 p-2 rounded"
+           className={style}
           />
         </div>
         <div>
@@ -67,7 +69,7 @@ export default function EditMemberModal({ show, onClose, editingMember }) {
             type="email"
             value={member.email}
             onChange={(e) => setMember({ ...member, email: e.target.value })}
-            className="w-full border border-gray-300 p-2 rounded"
+            className={style}
           />
         </div>
         <div>
@@ -76,7 +78,7 @@ export default function EditMemberModal({ show, onClose, editingMember }) {
             type="text"
             value={member.phone}
             onChange={(e) => setMember({ ...member, phone: e.target.value })}
-            className="w-full border border-gray-300 p-2 rounded"
+            className={style}
           />
         </div>
       </div>

@@ -19,6 +19,9 @@ export default function EditBookModal({ show, onClose, editingBook }) {
     if (!show) setBook(null);
   }, [show]);
 
+   const style =
+    "w-full border border-gray-300 p-2 rounded  focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black";
+  
   const handleUpdate = async () => {
     if (!book) return;
     await editBook(book.id, {
@@ -53,7 +56,7 @@ export default function EditBookModal({ show, onClose, editingBook }) {
             type="text"
             value={book.title}
             onChange={(e) => setBook({ ...book, title: e.target.value })}
-            className="w-full border border-gray-300 p-2 rounded"
+            className={style}
           />
         </div>
         <div>
@@ -62,7 +65,7 @@ export default function EditBookModal({ show, onClose, editingBook }) {
             type="text"
             value={book.author}
             onChange={(e) => setBook({ ...book, author: e.target.value })}
-            className="w-full border border-gray-300 p-2 rounded"
+            className={style}
           />
         </div>
         <div>
@@ -77,7 +80,7 @@ export default function EditBookModal({ show, onClose, editingBook }) {
             onChange={(e) =>
               setBook({ ...book, published_year: e.target.value })
             }
-            className="w-full border border-gray-300 p-2 rounded"
+            className={style}
           />
         </div>
         <div>
@@ -90,7 +93,7 @@ export default function EditBookModal({ show, onClose, editingBook }) {
             onChange={(e) =>
               setBook({ ...book, available_copies: e.target.value })
             }
-            className="w-full border border-gray-300 p-2 rounded"
+            className={style}
           />
         </div>
         <div>
@@ -106,7 +109,7 @@ export default function EditBookModal({ show, onClose, editingBook }) {
                 genre: selectedGenre || { id: "", name: "" }, // fallback if not found
               });
             }}
-            className="w-full text-left border border-gray-300 p-2 rounded"
+            className={style}
           >
             <option value="">Select Genre</option>
             {genres.map((g) => (

@@ -26,6 +26,7 @@ export default function Genres() {
   const [genreToDelete, setGenreToDelete] = useState(null);
 
   useEffect(() => {
+    document.title = "Genres | Library Manager"
     getGenres();
   }, []);
 
@@ -68,7 +69,7 @@ export default function Genres() {
           filteredGenres.map((genre) => (
             <div
               key={genre.id}
-              className="flex justify-between bg-white shadow-sm rounded-md text-left p-4 border border-gray-200"
+              className="flex justify-between bg-white shadow-sm rounded-md text-left px-4 py-6 border border-gray-200"
             >
               <div>
                 <h2 className="font-semibold truncate">{genre.name}</h2>

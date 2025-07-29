@@ -1,12 +1,12 @@
 import axiosInstance from "./axiosInstance";
 
 export const getStaff = async () => {
-  const response = await axiosInstance.get("/staff");
+  const response = await axiosInstance.get("/auth/users");
   return response.data;
 };
 
 export const createStaff = async (memberData) => {
-  const response = await axiosInstance.post("/staff", memberData);
+  const response = await axiosInstance.post("/auth/signup", memberData);
   return response.data;
 };
 

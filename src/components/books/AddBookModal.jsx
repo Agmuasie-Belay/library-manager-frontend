@@ -16,7 +16,7 @@ export default function AddBookModal({ showForm, handleClose, onSubmit }) {
   const [available_copies, setAvailableCopies] = useState("");
   const [genreId, setGenreId] = useState("");
   const style =
-    "w-full border border-gray-300 p-2 rounded  focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500";
+    "w-full border border-gray-300 p-2 rounded  focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black";
   const bookData = {
     title,
     author,
@@ -106,11 +106,11 @@ export default function AddBookModal({ showForm, handleClose, onSubmit }) {
             required
           />
         </div>
-        <label className="block text-left font-medium mb-1">Genre</label>
+        <label className="block text-left font-medium mb-1 ">Genre</label>
         <select
           value={genreId}
           onChange={(e) => setGenreId(e.target.value)}
-          className={style}
+          className={`${style}`}
           required
         >
           <option value="">Select a genre</option>

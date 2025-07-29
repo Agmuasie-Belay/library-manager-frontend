@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/store/useAuthStore";
+import { LogOut, User}from "lucide-react";
 export default function ProfileAvatar({ name = "User", imageUrl = "" }) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
@@ -45,24 +46,25 @@ export default function ProfileAvatar({ name = "User", imageUrl = "" }) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-0 w-40 bg-white border border-gray-200 rounded shadow-md z-50">
-          <div className=" text-gray-800 border-b py-2 font-bold text-center">
-            {name}
+        <div className="absolute right-0 mt-0 w-60 bg-white border border-gray-200 rounded shadow-md z-50">
+          <div className=" text-gray-800 border-b border-gray-200 text-left p-2 font-semibold">
+            {name}<br/><p className="text-gray-600 font-normal text-sm">{name}</p>
           </div>
           <button
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-sm text-gray-700 font-semibold"
-            onClick={() => navigate("/profile")}
+            className="block w-full text-left p-1 text-sm text-gray-700 "
+            onClick={() => {navigate("/profile"); setIsOpen(!isOpen)}}
+
           >
-            Profile
+           <div className="flex flex-row p-1 rounded-md gap-x-1 hover:bg-gray-100"><User size={18} className="mt-0.5"/>Profile</div> 
           </button>
           <button
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-sm text-red-800 font-semibold"
+            className="block w-full text-left p-1   text-sm text-red-800 "
             onClick={() => {
               localStorage.removeItem("accessToken");
               navigate("/login");
             }}
           >
-            Logout
+            <div className="flex flex-row p-1 rounded-md gap-x-1 hover:bg-gray-100"><LogOut size={18} className="mt-0.5"/>{" "}Logout</div>
           </button>
         </div>
       )}

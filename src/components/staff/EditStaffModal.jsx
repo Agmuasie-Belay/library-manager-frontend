@@ -6,15 +6,26 @@ import { useStaffStore } from "@/store/useStaffStore";
 export default function EditStaffDetailsModal({ show, onClose, editingStaff }) {
   const { updateStaffById } = useStaffStore();
 
-  const [staff, setStaff] = useState(editingStaff || null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const roles = ["admin", "librarian"];
+  const emptyStaff = {
+  id: null,
+  username: "",
+  email: "",
+  password: "",
+  role: "",
+};
+
+const [staff, setStaff] = useState(editingStaff || emptyStaff);
+
   useEffect(() => {
     if (editingStaff && show) {
-      setStaff(editingStaff);
+      setStaff({ ...emptyStaff, ...editingStaff });
     }
   }, [editingStaff, show]);
-
+ const style =
+    "w-full border border-gray-300 p-2 rounded  focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black";
+  
   useEffect(() => {
     if (!show) setStaff(null);
   }, [show]);
@@ -66,7 +77,7 @@ export default function EditStaffDetailsModal({ show, onClose, editingStaff }) {
               type="text"
               value={staff.username}
               onChange={(e) => setStaff({ ...staff, username: e.target.value })}
-              className="w-full border border-gray-300 p-2 rounded"
+              className={style}
             />
           </div>
           <div>
@@ -75,7 +86,7 @@ export default function EditStaffDetailsModal({ show, onClose, editingStaff }) {
               type="email"
               value={staff.email}
               onChange={(e) => setStaff({ ...staff, email: e.target.value })}
-              className="w-full border border-gray-300 p-2 rounded"
+              className={style}
             />
           </div>
           <div>
@@ -84,7 +95,7 @@ export default function EditStaffDetailsModal({ show, onClose, editingStaff }) {
               type="password"
               value={staff.password || ""}
               onChange={(e) => setStaff({ ...staff, password: e.target.value })}
-              className="w-full border border-gray-300 p-2 rounded"
+              className={style}
             />
           </div>
           <div>
@@ -93,7 +104,7 @@ export default function EditStaffDetailsModal({ show, onClose, editingStaff }) {
               onChange={(e) => {
                 setStaff({ ...staff, role: e.target.value });
               }}
-              className="w-full text-left border border-gray-300 p-2 rounded"
+              className={style}
             >
               <option value="">Select Role</option>
               {roles.map((role) => (

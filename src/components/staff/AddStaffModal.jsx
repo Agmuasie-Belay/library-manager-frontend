@@ -3,25 +3,26 @@ import { useState } from "react";
 import Button from "../core/Button";
 
 export default function AddStaffModal({ showForm, handleClose, onSubmit }) {
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
-  const [joinDate, setJoinDate] = useState("");
+  const [password, setPassword] = useState("");
   const roles = [
     { id: 1, name: "admin" },
     { id: 2, name: "librarian" },
   ];
   const inputStyle =
-    "w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500";
+    "w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black";
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const staffData = {
-      name,
+      username,
       email,
+      password,
       role,
-      join_date: joinDate,
     };
+    console.log(staffData)
     onSubmit(staffData);
     resetForm();
     handleClose();
@@ -31,7 +32,7 @@ export default function AddStaffModal({ showForm, handleClose, onSubmit }) {
     setName("");
     setEmail("");
     setRole("");
-    setJoinDate("");
+    setPassword("");
   };
 
   return (
@@ -52,12 +53,12 @@ export default function AddStaffModal({ showForm, handleClose, onSubmit }) {
         </div>
       }
     >
-      <form id="add-staff-form" onSubmit={handleSubmit}>
+      <form id="add-staff-form" onSubmit={handleSubmit} autoComplete="off">
         <div className="mb-3">
           <label className="block text-left font-medium mb-1">Name</label>
           <input
             type="text"
-            value={name}
+            value={username}
             onChange={(e) => setName(e.target.value)}
             className={inputStyle}
             required
@@ -68,8 +69,11 @@ export default function AddStaffModal({ showForm, handleClose, onSubmit }) {
           <input
             type="email"
             value={email}
+            name="new-user-email"
+            placeholder=""
             onChange={(e) => setEmail(e.target.value)}
             className={inputStyle}
+            autoComplete="off"
             required
           />
         </div>
@@ -87,7 +91,7 @@ export default function AddStaffModal({ showForm, handleClose, onSubmit }) {
               Select a role
             </option>
             {roles.map((role) => (
-              <option key={role.id} value={role.id} className="max-w-48">
+              <option key={role.id} value={role.name} className="max-w-48">
                 {role.name}
               </option>
             ))}
@@ -95,12 +99,13 @@ export default function AddStaffModal({ showForm, handleClose, onSubmit }) {
         </div>
 
         <div className="mb-3">
-          <label className="block text-left font-medium mb-1">Join Date</label>
+          <label className="block text-left font-medium mb-1">Password</label>
           <input
-            type="date"
-            value={joinDate}
-            onChange={(e) => setJoinDate(e.target.value)}
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className={inputStyle}
+            autoComplete="off"
             required
           />
         </div>

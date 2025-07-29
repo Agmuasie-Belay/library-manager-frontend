@@ -26,7 +26,7 @@ export default function ViewStaffDetailsModal({ show, onClose, staff }) {
           <span className="font-semibold">Role:</span>  <span className={`bg-black text-white rounded-2xl px-2 ${staff.role==="admin"?style1:style2}`}>{staff?.role}</span>
         </div>
         <div className="text-left">
-          <span className="font-semibold">Status:</span> <spam className=" bg-black text-white rounded-2xl px-2">Active</spam>
+          <span className="font-semibold">Status:</span> <span className=" bg-blue-500 text-white rounded-2xl px-2">Active</span>
         </div>
       </div>
     </Modal>

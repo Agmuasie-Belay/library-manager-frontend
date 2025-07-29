@@ -32,10 +32,12 @@ export default function MemberList() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [memberToDelete, setMemberToDelete] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const style1 = "bg-blue-600 text-white";
+  const style1 = "bg-blue-700 text-white";
   const style2 = "bg-gray-700 text-white";
+  
   useEffect(() => {
     if (user) {
+      document.title = "Members | Library Manager"
       loadMembers();
     }
   }, [role]);

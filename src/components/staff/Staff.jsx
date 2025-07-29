@@ -20,8 +20,9 @@ export default function Staff() {
   const { staff, loadStaff, addStaff, removeStaff, isLoading, error } =
     useStaffStore();
 
-  const user = useAuthStore((state) => state.user);
-  const role = useAuthStore((state) => state.role);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const role = userInfo.role;
+ 
 
   const [searchTerm, setSearchTerm] = useState("");
   const [showForm, setShowForm] = useState(false);
@@ -32,11 +33,10 @@ export default function Staff() {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const style1 = "bg-red-600 text-white";
   const style2 = "bg-gray-700 text-white";
-  const style3 = "bg-black text-white";
+  const style3 = "bg-blue-500 text-white";
   useEffect(() => {
-    if (user) {
-      loadStaff();
-    }
+    document.title = "Staff | Library Manager"
+    loadStaff();
   }, [role]);
 
   const handleClose = () => setShowForm(false);
@@ -61,16 +61,15 @@ export default function Staff() {
     }
   };
 
-  const staffFiltered = staff.filter((s) => {
+  const staffFiltered = staff.users.filter((s) => {
     const term = searchTerm.toLowerCase().trim();
     return (
-      s.username?.toLowerCase().includes(term) ||
-      s.email?.toLowerCase().includes(term) ||
-      s.role?.toLowerCase().includes(term)
+      s?.username?.toLowerCase().includes(term) ||
+      s?.email?.toLowerCase().includes(term) ||
+      s?.role?.toLowerCase().includes(term)
     );
   });
-console.log(staffFiltered)
-
+ 
   return (
     <div>
       <div className="flex flex-row justify-between">
@@ -106,7 +105,7 @@ console.log(staffFiltered)
                 <InfoCard key={i}>
                   <InfoCardHeader
                     title={s.username}
-                    subtitle={s.email}
+                    subtitle={s.email ?? "N/A"}
                     subtitlePrefix="Email: "
                     status={[
                       {
@@ -121,8 +120,8 @@ console.log(staffFiltered)
                   />
                   <InfoCardBody
                     metaRows={[
-                      { label: "Phone", value: s?.phone },
-                      { label: "Created", value: s?.join_date },
+                      { label: "Phone", value: s?.phone ?? "N/A" },
+                      { label: "Created", value: s?.join_date ?? "N/A" },
                       { label: "Role", value: s?.role },
                     ]}
                   />
@@ -133,10 +132,10 @@ console.log(staffFiltered)
                         onClick={() => setSelectedStaff(s)}
                         icon={<Eye size={18} />}
                       />,
-                      <ActionButton
-                        action="close"
-                        icon={<TimerReset size={18} />}
-                      />,
+                      // <ActionButton
+                      //   action="close"
+                      //   icon={<TimerReset size={18} />}
+                      // />,
                       <ActionButton
                         action="edit"
                         icon={<Edit size={18} />}
@@ -174,36 +173,40 @@ console.log(staffFiltered)
         </div>
       )}
 
-      <AddStaffModal
-        showForm={showForm}
-        handleClose={handleClose}
-        onSubmit={handleSubmit}
-      />
+      {role === "admin" && (
+        <>
+          <AddStaffModal
+            showForm={showForm}
+            handleClose={handleClose}
+            onSubmit={handleSubmit}
+          />
 
-      <ViewStaffDetailsModal
-        show={!!selectedStaff}
-        onClose={() => setSelectedStaff(null)}
-        staff={selectedStaff}
-        // activeBorrow={staffWithActiveBorrowCount}
-      />
+          <ViewStaffDetailsModal
+            show={!!selectedStaff}
+            onClose={() => setSelectedStaff(null)}
+            staff={selectedStaff}
+            // activeBorrow={staffWithActiveBorrowCount}
+          />
 
-      <EditStaffModal
-        staffId={editingStaff?.id}
-        editingStaff={editingStaff}
-        show={showEditModal}
-        onClose={handleEditClose}
-      />
+          <EditStaffModal
+            staffId={editingStaff?.id}
+            editingStaff={editingStaff}
+            show={showEditModal}
+            onClose={handleEditClose}
+          />
 
-      <ConfirmModal
-        show={showConfirmModal}
-        title="Delete Staff"
-        message={`Are you sure you want to delete "${staffToDelete?.username}"? This action cannot be undone.`}
-        onConfirm={handleDeleteConfirmed}
-        onCancel={() => {
-          setShowConfirmModal(false);
-          setStaffToDelete(null);
-        }}
-      />
+          <ConfirmModal
+            show={showConfirmModal}
+            title="Delete Staff"
+            message={`Are you sure you want to delete "${staffToDelete?.username}"? This action cannot be undone.`}
+            onConfirm={handleDeleteConfirmed}
+            onCancel={() => {
+              setShowConfirmModal(false);
+              setStaffToDelete(null);
+            }}
+          />
+        </>
+      )}
     </div>
   );
 }

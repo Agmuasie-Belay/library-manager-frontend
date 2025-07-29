@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "@/api/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BookOpen } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
 import toast from "react-hot-toast";
@@ -11,6 +11,11 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
+   const style =
+    "w-full border gap-2 border-gray-300 p-2 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black";
+   useEffect(()=>{
+      document.title = "Login | Library Manager"
+    }, [])
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -32,7 +37,7 @@ export default function Login() {
 
   return (
     <div className="fixed top-0 left-0 grid  bg-gray-50 place-items-center m-0 w-full h-screen p-0 ">
-      <div className=" grid grid-cols-1 align-middle my-auto p-6 w-full sm:w-[400px] sm:mx-auto sm:rounded-md bg-white shadow-gray-300 shadow-sm">
+      <div className=" grid grid-cols-1 align-middle my-auto p-6 w-[80%] sm:w-[400px] sm:mx-auto rounded-md bg-white shadow-gray-300 shadow-sm">
         <form onSubmit={handleLogin} action="">
           <div className="flex justify-center">
             <BookOpen className="text-blue-600 w-12 h-12" />
@@ -50,9 +55,10 @@ export default function Login() {
               name="email"
               value={email}
               placeholder="Enter your username"
-              className="border-1 rounded-md border-gray-300 w-full px-2 py-2 mb-4 focus:outline-blue-500 focus:ring-offset-2"
+              className={style}
               style={{ outlineOffset: "4px" }}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <label className="font-semibold mb-2" htmlFor="password">
               Password
@@ -62,16 +68,17 @@ export default function Login() {
               id="password"
               name="password"
               placeholder="Enter your password"
-              className="border-1 rounded-md border-gray-300 w-full px-2 py-2 mb-4 focus:outline-blue-500 focus:ring-offset-2"
+              className={style}
               style={{ outlineOffset: "4px" }}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full flex items-center justify-center gap-2 border-1 rounded-md p-2 font-semibold bg-black text-white hover:bg-gray-800 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed mb-4"
+            className="w-full flex items-center justify-center gap-2  border-1 rounded-md p-2 font-semibold bg-black text-white hover:bg-gray-800 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed mb-4"
           >
             {isLoading && (
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

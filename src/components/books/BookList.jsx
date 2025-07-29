@@ -38,6 +38,7 @@ export default function BookList() {
 
   useEffect(() => {
     if (user) {
+      document.title = "Books | Library Manager"
       loadBooks();
       loadGenres();
     }
@@ -119,8 +120,8 @@ export default function BookList() {
                             : "Out of Stock",
                         className:
                           book.available_copies > 0
-                            ? "bg-blue-500 text-white"
-                            : "bg-red-500 text-white",
+                            ? "bg-black text-white"
+                            : "bg-red-600 text-white",
                       },
                     ]}
                   />

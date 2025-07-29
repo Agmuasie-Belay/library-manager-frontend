@@ -25,17 +25,17 @@ export default function ViewBookDetailsModal({ show, onClose, book }) {
         </div>
         <div className=" text-left ">
           <span className="font-semibold">Available:</span>{" "}
-          {book.available_copies} Copies
+          <span className="bg-black rounded-xl text-white px-2">{book.available_copies} Copies</span>
         </div>
         <div className=" text-left mb-4 ">
           <span className="font-semibold">
             Status:{" "}
             {book.available_copies > 0 ? (
-              <span className="bg-green-600 text-white rounded-full px-1 font-medium">
+              <span className="bg-black px-2 text-white rounded-full  font-medium">
                 Available
               </span>
             ) : (
-              <span className="bg-red-600 text-white rounded-full px-1 font-medium">
+              <span className="bg-red-600 text-white rounded-full px-2 font-medium">
                 Out of Stock
               </span>
             )}

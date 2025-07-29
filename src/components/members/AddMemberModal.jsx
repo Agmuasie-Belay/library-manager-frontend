@@ -9,9 +9,9 @@ export default function AddMemberModal({ showForm, handleClose, onSubmit }) {
   const [phone, setPhone] = useState("");
   const [joinDate, setJoinDate] = useState("");
 
-  const inputStyle =
-    "w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500";
-
+   const inputStyle =
+    "w-full border border-gray-300 p-2 rounded  focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black";
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const memberData = {
