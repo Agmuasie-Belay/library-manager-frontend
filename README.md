@@ -2,7 +2,7 @@
 
 A full-featured library management system built with **React** and **Tailwind CSS**, offering secure role-based access and powerful admin/librarian tools.
 
-You can [click here](https://library-manager-agmuasie-belay-agmuasie-belays-projects.vercel.app) to access live version deployed on Vercel.
+You can [click here](https://library-manager-frontend-alpha.vercel.app) to access live version deployed on Vercel.
 
 
 ## 🔐 Authentication & Roles
