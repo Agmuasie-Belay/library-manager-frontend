@@ -82,6 +82,7 @@ export const useBorrowStore = create((set, get) => ({
   returnBook: async () => {
     const id = get().selectedBorrowId;
     try {
+      console.log(id)
       await returnBook(Number(id));
       set({ showReturnModal: false, selectedBorrowId: "" });
       toast.success("Book retured successfully");
@@ -90,6 +91,7 @@ export const useBorrowStore = create((set, get) => ({
       toast.error("Failed to return book");
     }
     await get().loadBorrowRecords();
+    
   },
 
   setSelectedBookId: (id) => set({ selectedBookId: id }),

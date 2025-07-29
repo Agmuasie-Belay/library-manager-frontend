@@ -11,7 +11,8 @@ import { format as ordinal } from "date-fns/format";
 import { Calendar } from "lucide-react";
 export default function ReturnBookModal({ showForm, handleClose }) {
   const modalRef = useRef();
-  const { borrows, selectedBorrowId, setSelectedBorrowId, returnBook } =
+  const borrows = useBorrowStore(state => state.borrows);
+  const {  selectedBorrowId, setSelectedBorrowId, returnBook } =
     useBorrowStore();
     const {books, loadBooks} = useBookStore();
   const [selectedBookId, setSelectedBookId] = useState("");
@@ -48,8 +49,8 @@ export default function ReturnBookModal({ showForm, handleClose }) {
       author: book?.author || "Unknown",
     };
   });
-
-  const bookOptions = borrowsWithAuthors.map((b) => ({
+const activeBorrows = borrowsWithAuthors.filter(borrow => borrow.status !== "RETURNED");
+  const bookOptions = activeBorrows.map((b) => ({
     value: b.id,
     label: b.book_title,
     sublabel: b.member_name,
@@ -72,7 +73,7 @@ export default function ReturnBookModal({ showForm, handleClose }) {
             text="Return Book"
             type="submit"
             form="borrow-book-form"
-            onClick={returnBook}
+            onClick={()=>{returnBook(); handleClose()}}
           />
         </div>
       }
@@ -86,9 +87,9 @@ export default function ReturnBookModal({ showForm, handleClose }) {
             <Select
               options={bookOptions}
               value={bookOptions.find(
-                (opt) => opt.value === Number(selectedBookId)
+                (opt) => opt.value === Number(selectedBorrowId)
               )}
-              onChange={(selected) => setSelectedBookId(selected?.value || "")}
+              onChange={(selected) =>{console.log(selectedBorrowId); setSelectedBorrowId(selected?.value || "")}}
               placeholder="Choose a book to borrow"
               components={{ Option: CustomOption }}
               className={`react-select-container text-left `}

@@ -20,7 +20,8 @@ export default function DeleteGenreModal({ show, genre, onClose, onConfirm }) {
             type="submit"
             onClick={() => {
               deleteGenre(genre.id);
-              onConfirm(genre.id);
+              //onConfirm(genre.id);
+              onClose();
             }}
           />
         </div>
