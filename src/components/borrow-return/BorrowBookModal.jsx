@@ -17,9 +17,10 @@ export default function BorrowBookModal({ showForm, handleClose }) {
   const [selectedBook, setSelectedBook] = useState(null);
   const [selectedMember, setSelectedMember] = useState(null);
 
-  const today = format(new Date(), "MMMM do, yyyy") ;
-  const dueDate = format(new Date(Date.now() + 14 * 24 * 60 * 60 * 1000), "MMMM do, yyyy")
-    ;
+  const today_disp = format(new Date(), "MMMM do, yyyy") ;
+  const today_payload = new Date().toISOString().split('T')[0];
+  const dueDate_disp = format(new Date(Date.now() + 14 * 24 * 60 * 60 * 1000), "MMMM do, yyyy");
+  const dueDate_payload = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const role = useAuthStore((state) => state.role);
   const user = useAuthStore((state) => state.user);
   const customStyles = {
@@ -51,7 +52,7 @@ export default function BorrowBookModal({ showForm, handleClose }) {
     await borrowBook({
       book_id: Number(selectedBookId),
       member_id: Number(selectedMemberId),
-      due_date: dueDate,
+      due_date: dueDate_payload,
       
     });
     setSelectedBookId("");
@@ -135,13 +136,13 @@ export default function BorrowBookModal({ showForm, handleClose }) {
             <div className="flex gap-2" >
               <Calendar size={18} className="mt-3"/>
               <div>
-              Borrow Date:<br/> <strong>{today}</strong>
+              Borrow Date:<br/> <strong>{today_disp}</strong>
             </div>
             </div>
             <div className="flex gap-2" >
               <Calendar size={18} className="mt-3"/>
               <div>
-              Due Date:<br/> <strong>{dueDate}</strong>
+              Due Date:<br/> <strong>{dueDate_disp}</strong>
             </div>
             </div>
           </div>
