@@ -27,14 +27,14 @@ export const useBorrowStore = create((set, get) => ({
     try {
       const raw = await getBorrowRecords();
       const overdue = await getOverdueRecords();
-
+console.log(overdue)
       const today = new Date();
       const borrows = raw.map((b) => {
         const due = new Date(b.due_date);
         const returned = b.return_date !== null;
         let status = "ACTIVE";
         if (returned) status = "RETURNED";
-        else if (due < today) status = "OVERDUE";
+        else if (due < today && returned == null) status = "OVERDUE";
 
         return {
           id: b.id,

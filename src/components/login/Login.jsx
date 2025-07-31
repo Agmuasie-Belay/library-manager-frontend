@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <div className="fixed top-0 left-0 grid  bg-gray-50 place-items-center m-0 w-full h-screen p-0 ">
-      <div className=" grid grid-cols-1 align-middle my-auto p-6 w-[80%] sm:w-[400px] sm:mx-auto rounded-md bg-white shadow-gray-300 shadow-sm">
+      <div className=" grid grid-cols-1 align-middle my-auto p-6 w-[95%] sm:w-[400px] sm:mx-auto rounded-md bg-white shadow-gray-300 shadow-sm">
         <form onSubmit={handleLogin} action="">
           <div className="flex justify-center">
             <BookOpen className="text-blue-600 w-12 h-12" />
@@ -85,7 +85,7 @@ export default function Login() {
             )}
             <span>{isLoading ? "Signing in..." : "Sign in"}</span>
           </button>
-          <hr className="text-gray-600"/>
+          {/* <hr className="text-gray-600"/>
           <div className="text-gray-500">
             <p>Test credentials</p>
           <div className="grid grid-cols-2 text-xs text-left">
@@ -98,7 +98,7 @@ export default function Login() {
                 password: admin123
               </div>
           </div>
-          </div>
+          </div> */}
         </form>
       </div>
     </div>

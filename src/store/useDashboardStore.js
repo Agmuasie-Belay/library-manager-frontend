@@ -38,9 +38,11 @@ const useDashboardStore = create((set) => ({
         });
 
         const activeCount = borrows.filter((borrow) => borrow.status === "ACTIVE").length;
-        const overdueCount = borrows.filter(
-          (borrow) => borrow.status === "OVERDUE"
-        ).length;
+        const overdueCount = overdueRes.length;
+       
+        // borrows.filter(
+        //   (borrow) => borrow.status === "OVERDUE"
+        // ).length;
 
         const recent = borrowRes.sort((a, b) => b.id - a.id).slice(0, 5);
 

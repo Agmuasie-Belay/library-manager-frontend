@@ -1,5 +1,5 @@
 import React from "react";
-import { Shield, UserIcon, User, Mail, Phone, Calendar} from "lucide-react";
+import { Shield, UserIcon, User, Mail, Phone, Calendar } from "lucide-react";
 
 export default function Profile() {
   const user = JSON.parse(localStorage.getItem("userInfo")) || {};
@@ -71,7 +71,6 @@ export default function Profile() {
                       <p>Member Since:</p> <p>{created_at}</p>
                     </div>
                   </div>
-                  
                 </div>
               </div>
             </div>
@@ -121,66 +120,58 @@ export default function Profile() {
           <div className="w-full md:w-2/3">
             <div className="flex flex-col p-4 bg-white rounded-2xl shadow-sm">
               <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-2">{username}</h3>
-                <p className="uppercase text-sm text-gray-500">LIBRARIAN</p>
-              </div>
+                
+                <div className="flex flex-col">
+                  <div className="flex flex-row gap-4">
+                    <div className="grid  place-content-center bg-blue-100 w-16 h-16 text-blue-600 rounded-full aspect-square">
+                      <UserIcon size={40} />
+                    </div>
+                    <div className="mb-6 ">
+                      <h3 className="text-xl font-semibold">{username}</h3>
+                      <p className="uppercase bg-black rounded-xl text-white text-xs text-center font-semibold">
+                        {roleLabel}
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="mb-6">
-                <h4 className="text-[16pt] font-semibold mb-2">
-                  Basic Information
-                </h4>
-                <div className="flex flex-col p-4 bg-white rounded-2xl shadow-sm">
-              <div className="flex flex-row gap-4">
-                <div className="grid  place-content-center bg-blue-100 w-16 h-16 text-blue-600 rounded-full aspect-square">
-                  <UserIcon size={40} />
+                  <div className="mb-6">
+                    <h4 className="text-[16pt] font-semibold mb-2">
+                      Basic Information
+                    </h4>
+                    <div className="text-sm text-gray-700 space-y-6">
+                      <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
+                        <User className="mt-2 w-5 h-5" />
+                        <div>
+                          <p>Username:</p> <p>{username}</p>
+                        </div>
+                      </div>
+                      <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
+                        <Mail className="mt-2 w-5 h-5" />
+                        <div>
+                          <p>Email Address:</p> <p>{email}</p>
+                        </div>
+                      </div>
+                      <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
+                        <Phone className="mt-2 w-5 h-5" />
+                        <div>
+                          <p>Phone Number:</p> <p>{phone}</p>
+                        </div>
+                      </div>
+                      <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
+                        <UserIcon className="mt-2 w-5 h-5" />
+                        <div>
+                          <p>Role:</p> <p>{role}</p>
+                        </div>
+                      </div>
+                      <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
+                        <Calendar className="mt-2 w-5 h-5" />
+                        <div>
+                          <p>Member Since:</p> <p>{created_at}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="mb-6 ">
-                  <h3 className="text-xl font-semibold">{username}</h3>
-                  <p className="uppercase bg-black rounded-xl text-white text-xs text-center font-semibold">
-                    {roleLabel}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <h4 className="text-[16pt] font-semibold mb-2">
-                  Basic Information
-                </h4>
-                <div className="text-sm text-gray-700 space-y-6">
-                  <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
-                    <User className="mt-2 w-5 h-5" />
-                    <div>
-                      <p>Username:</p> <p>{username}</p>
-                    </div>
-                  </div>
-                  <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
-                    <Mail className="mt-2 w-5 h-5" />
-                    <div>
-                      <p>Email Address:</p> <p>{email}</p>
-                    </div>
-                  </div>
-                  <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
-                    <Phone className="mt-2 w-5 h-5" />
-                    <div>
-                      <p>Phone Number:</p> <p>{phone}</p>
-                    </div>
-                  </div>
-                  <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
-                    <UserIcon className="mt-2 w-5 h-5" />
-                    <div>
-                      <p>Role:</p> <p>{role}</p>
-                    </div>
-                  </div>
-                  <div className="flex p-4 gap-x-2 bg-gray-100 rounded-md">
-                    <Calendar className="mt-2 w-5 h-5" />
-                    <div>
-                      <p>Member Since:</p> <p>{created_at}</p>
-                    </div>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
               </div>
             </div>
 
