@@ -11,11 +11,11 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
-   const style =
+  const style =
     "w-full border gap-2 border-gray-300 p-2 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black";
-   useEffect(()=>{
-      document.title = "Login | Library Manager"
-    }, [])
+  useEffect(() => {
+    document.title = "Login | Library Manager";
+  }, []);
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -85,21 +85,25 @@ export default function Login() {
             )}
             <span>{isLoading ? "Signing in..." : "Sign in"}</span>
           </button>
-          {/* <hr className="text-gray-600"/>
+        </form>
+        <div>
+          <hr className="text-gray-600" />
           <div className="text-gray-500">
             <p>Test credentials</p>
-          <div className="grid grid-cols-2 text-xs text-left">
+            <div className="grid grid-cols-2 text-xs text-left">
               <div>
-                librarian: <br/>librarian@library.com <br/>
+                librarian: <br />
+                librarian@library.com <br />
                 password: librarian123
               </div>
               <div>
-                admin: <br/>admin@library.com <br/>
+                admin: <br />
+                admin@library.com <br />
                 password: admin123
               </div>
+            </div>
           </div>
-          </div> */}
-        </form>
+        </div>
       </div>
     </div>
   );
